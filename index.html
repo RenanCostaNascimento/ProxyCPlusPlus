@@ -1,57 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
 <html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Proxycplusplus : Proxy em C++" />
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <title>Proxycplusplus</title>
+  <meta name="description" content="Proxy em C++">
 
-    <title>Proxycplusplus</title>
-  </head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <body>
+</head>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/RenanCostaNascimento/ProxyCPlusPlus">View on GitHub</a>
+<body>
 
-          <h1 id="project_title">Proxycplusplus</h1>
-          <h2 id="project_tagline">Proxy em C++</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/RenanCostaNascimento/ProxyCPlusPlus/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/RenanCostaNascimento/ProxyCPlusPlus/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Proxycplusplus</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Proxy em C++</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/RenanCostaNascimento/ProxyCPlusPlus/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/RenanCostaNascimento/ProxyCPlusPlus/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/RenanCostaNascimento/ProxyCPlusPlus" class="code">View Proxycplusplus on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
 <a name="proxy-em-c" class="anchor" href="#proxy-em-c"><span class="octicon octicon-link"></span></a>Proxy em C++</h1>
 
-<p>O Parão de Projeto Proxy é um padrão Estrutura cujo objetivo principal é encapsular um objeto através de um outro objeto que possui a mesma interface, de forma que o segundo objeto, conhecido como “Proxy”, controla o acesso ao primeiro, que é o objeto real.</p>
+<p>O Padrão de Projeto Proxy é um padrão Estrutural cujo objetivo principal é encapsular um objeto através de um outro objeto que possui a mesma interface, de forma que o segundo objeto, conhecido como “Proxy”, controla o acesso ao primeiro, que é o objeto real. O padrão adiciona uma camada de indireção ao aceitar requisições de acesso de um objeto cliente e passá-lo ao objeto real, conforme necessário. É bom observar que o método encontrado no objeto proxy pode realizar operações antes ou depois da chamada do método do objeto real.</p>
 
-<h1>
-<a name="diagrama-de-classe" class="anchor" href="#diagrama-de-classe"><span class="octicon octicon-link"></span></a>Diagrama de Classe</h1>
+<h2>
+<a name="diagrama-de-classe-gen%C3%A9rico" class="anchor" href="#diagrama-de-classe-gen%C3%A9rico"><span class="octicon octicon-link"></span></a>Diagrama de Classe Genérico</h2>
 
-<p><img src="https://imagizer.imageshack.us/v2/602x488q90/842/ip1h.png" alt=""></p>
-      </section>
+<p><img src="https://imagizer.imageshack.us/v2/602x488q90/843/d2x7.png" alt="Diagrama de Classe - Proxy"></p>
+
+<h2>
+<a name="tipos-de-proxy-e-seus-usos" class="anchor" href="#tipos-de-proxy-e-seus-usos"><span class="octicon octicon-link"></span></a>Tipos de Proxy e Seus Usos</h2>
+
+<ul>
+<li>
+<strong>Cache Proxy</strong> - um cache proxy melhora a performance de seu objeto protegido quando este realizar procedimento demorados e que retornam resultado que pouco variam. Por exemplo, o objeto protegido provê um método que calcula os número primos. Quando a primeira chamada ao objeto é feita, o proxy passa a requisição para o objeto real. O resultado da chamada é guardado no proxy, de modo que em um segundo instante não seja preciso invocar o objeto real.</li>
+<li>
+<strong>Protection Proxy</strong> - um protection proxy adiciona uma camada de proteção entre o objeto cliente e o objeto real. Por exemplo, o objeto real possui métodos de recuperação de dados em um banco de dados. O protection proxy pode adicionar verificações de autenticidade antes de permitir que os dados pedidos sejam retornados. Ou ainda pode filtrar os dados recebidos de modo que o cliente só receba aquilo que possui privilégio para ver.</li>
+<li>
+<strong>Remote Proxy</strong> - um remote proxy provê acesso a um objeto real localizado em lugares diferentes, normalmente através de conexões de rede. O proxy realiza as operações necessárias para que a requisição do cliente possa ser transferida para o objeto real, e aceita os resultados recebido antes de entregá-los ao cliente.</li>
+<li>
+<strong>Smart Proxy</strong> - um smart proxy adiciona funcionalidades extras nas chamadas do objeto real. Essa funcionalidade é muitas vezes invisível para o cliente. Por exemplo, ele pode contar as referências existentes de um recurso altamente requisitado para que, quando sua quantidade chegar à zero, o proxy possa retirar esse recurso da memória. Também é possível utilizá-lo para fazer o log das chamadas ao objeto real.</li>
+<li>
+<strong>Virtual Proxy</strong> - um virtual proxy provê uma versão simplificada de um objeto complexo. Somente quando os detalhes do objeto requisitado forem necessários é que o proxy irá instanciar o objeto real, semelhante ao Lazy Inicialization do Hibernate.</li>
+</ul><h2>
+<a name="exemplo-de-uso" class="anchor" href="#exemplo-de-uso"><span class="octicon octicon-link"></span></a>Exemplo de Uso</h2>
+        </article>
+      </div>
     </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/RenanCostaNascimento" class="avatar"><img src="https://avatars3.githubusercontent.com/u/6060401?s=60" width="48" height="48"/></a> <a href="https://github.com/RenanCostaNascimento">RenanCostaNascimento</a> maintains <a href="https://github.com/RenanCostaNascimento/ProxyCPlusPlus">Proxycplusplus</a></p>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Proxycplusplus maintained by <a href="https://github.com/RenanCostaNascimento">RenanCostaNascimento</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
 
-    
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/RenanCostaNascimento/ProxyCPlusPlus/tarball/master" class="tar">tar</a><a href="https://github.com/RenanCostaNascimento/ProxyCPlusPlus/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
 
-  </body>
+  
+</body>
 </html>
